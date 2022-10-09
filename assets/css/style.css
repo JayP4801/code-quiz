@@ -1,0 +1,26 @@
+/* apply styles to the entire body */
+body {
+    color: #000000;
+    background-color: #d8d6d6;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+/* apply styles to the header */
+header {
+    padding: 20px 35px
+}
+
+.answer-options li{
+    padding: 3px;
+}
+
+.answer {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
