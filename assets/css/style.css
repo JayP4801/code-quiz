@@ -25,14 +25,24 @@ header {
     justify-content: space-between;
     font-weight: bold;
     font-size: 20px;
+    align-items: center;
+}
+
+.score {
+    color: #d992ce;
 }
 
 .timer {
     display: inline;
+
 }
 
 .quiz-container {
     text-align: center;
+    margin: 20px 160px;
+    padding: 20px;
+    border-radius: 25px;
+    border: 2px solid #6957cc;
 }
 
 .answer-options li{
@@ -53,5 +63,6 @@ header {
 
 footer {
     width: 100%;
-    text-align: center;
+    padding: 20px 25px;
+    text-align: left;
 }
