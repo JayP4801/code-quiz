@@ -4,10 +4,6 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
-}
-
 /* apply styles to the entire body */
 body {
     color: #000000;
@@ -20,16 +16,17 @@ header {
     padding: 20px 35px;
 }
 
-.header-container {
+.header-section {
     display: flex;
     justify-content: space-between;
     font-weight: bold;
     font-size: 20px;
     align-items: center;
+    margin: 20px 20%;
 }
 
 .score {
-    color: #d992ce;
+    color: #d19336;
 }
 
 .timer {
@@ -37,32 +34,97 @@ header {
 
 }
 
-.quiz-container {
+.main-section {
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
     text-align: center;
-    margin: 20px 160px;
+    margin: 20px 20%;
     padding: 20px;
     border-radius: 25px;
     border: 2px solid #6957cc;
+    min-height: 350px;
 }
 
-.answer-options li{
-    padding: 3px;
-    list-style: none;
+.main-section section {
+    padding: 0 36px;
 }
 
-.answer-choice {
+.question, .description{
+    text-align: left;
+    padding: 0 6px;
+}
+
+.description {
+    text-align: center;
+}
+
+.answer-section {
+    display: flex;
+    align-items: flex-start;
+}
+
+.options {
+    display: inline-grid;
+    grid-template-columns: 1fr;
+}
+
+.options button {
+    transition-duration: 0.2s;
+}
+
+.options button:hover {
+    background-color: #8b3ab9;
+}
+
+.choice, .start-btn{
     background-color: #6957cc;
     border: none;
+    border-radius: 5px;
     color: white;
     padding: 15px 32px;
-    text-align: center;
+    margin: 5px;
+    text-align: left;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
 }
 
 footer {
-    width: 100%;
     padding: 20px 25px;
     text-align: left;
+    position: absolute;
+    bottom: 0;
 }
+
+/* media queries */
+@media screen and (max-width: 980px){
+    .main-section {
+        margin: 20px 10%;
+    }
+
+    .header-section {
+        margin: 20px 10%;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .main-section {
+        margin: 20px 5%;
+    }
+
+    .header-section {
+        margin: 20px 5%;
+    }
+}
+
+@media screen and (max-width: 575px){
+    .main-section {
+        margin: 20px 1%;
+    }
+
+    .header-section {
+        margin: 20px 1%;
+    }
+}
+

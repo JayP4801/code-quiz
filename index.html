@@ -8,28 +8,25 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 <body>
-    <header>
-        <div class="header-container">
+    <header id="header-container">
+        <div class="header-section">
             <p class="score">View your scores</p>
-            <p class="timer">Timer</p>
+            <p class="timer" id="timer"></p>
         </div>
     </header>
-    <Main>
-        <div class="quiz-container">
+    <Main id="main-container">
+        <div class="main-section" id="main-section">
             <section class="question-section">
-                <h1>Coding Quiz</h1>
-                <div class="question">
-                    <p>Question Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat temporibus amet enim cupiditate ullam quo, saepe officia repellat, rerum libero exercitationem, voluptates nihil eveniet earum.</p>
+                <h1 id="question-title">Coding quiz</h1>
+                <div class="description" id="description">
+                    <p id="question-prompt">Try to answer the following questions within 90 seconds. <br>Keep in mind that inncorect answers will penalize your score/time by ten seconds!</br></p>
                 </div>
             </section>
-            <div class="answer-section">
-                <ul class="answer-options">
-                    <li><button class="answer-choice">Answer</button></li>
-                    <li><button class="answer-choice">Answer</button></li>
-                    <li><button class="answer-choice">Answer</button></li>
-                    <li><button class="answer-choice">Answer</button></li>
-                </ul>
-            </div>
+            <section class="start-section" id="answer-section">
+                <div class="options" id="options">
+                    <button class="start-btn" id="start-btn">Start quiz</button>
+                </div>
+            </section>
         </div>
     </Main>
     <footer>❤️ Made by JayP</footer>
@@ -37,4 +34,44 @@
 </body>
 </html>
 
-<!-- 1.2.6, 4 -->
+<!-- 
+
+Question layout
+
+<div class="main-section" id="main-section">
+    <section class="question-section">
+        <h1>Question 1</h1>
+        <div class="question">
+            <p>Question Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugiat temporibus amet enim cupiditate ullam quo, saepe officia repellat, rerum libero exercitationem, voluptates nihil eveniet earum.</p>
+        </div>
+    </section>
+    <section class="answer-section">
+        <div class="options" id="options">
+            <button class="choice">1. This is the choice for question number one</button>
+            <button class="choice">2. Two</button>
+            <button class="choice">3. This is three</button>
+            <button class="choice">4. 4</button>
+        </div>
+    </section>
+</div>
+
+-------------------------------------------------------------------------------------------
+Starting layout
+
+<Main id="main-container">
+        <div class="main-section">
+            <section class="question-section">
+                <h1>Coding quiz</h1>
+                <div class="description">
+                    <p>Try to answer the following questions within 90 seconds. <br>Keep in mind that inncorect answers will penalize your score/time by ten seconds!</br></p>
+                </div>
+            </section>
+            <section class="start-section">
+                <div class="options">
+                    <button class="start-btn">Start quiz</button>
+                </div>
+            </section>
+        </div>
+    </Main>
+
+-->
