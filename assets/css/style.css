@@ -53,6 +53,7 @@ header {
 .question, .description{
     text-align: left;
     padding: 0 6px;
+    font-weight: bold;
 }
 
 .description {

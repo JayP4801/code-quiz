@@ -1,12 +1,20 @@
 var optionsEl = document.querySelector("#options");
 var mainContainer = document.querySelector("#main-container");
 var questionsArray = [
-    { question: "Which number is greater than 5?",
-        choice: ["2", "3", "4", "6 (This is the correct answer)"],
-        correctAnswer: "6"
+    { question: "Which of these is not like the other?",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples"
+    },
+    { question: "Which of the following is not round?",
+        choice: ["Football", "Basket ball", "Baseball", "Tennis Ball"],
+        correctAnswer: "Football"
+    },
+    { question: "How many stars are on the American flag?",
+        choice: ["47", "48", "49", "50"],
+        correctAnswer: "50"
     }
 ];
-
+var answerMatchEl = [];
 
 var quizTimeHandlerEl = function(quizDataObj){
     document.getElementById("timer").innerHTML = "Good luck!";
@@ -22,25 +30,43 @@ var quizTimeHandlerEl = function(quizDataObj){
 };
 
 var questionHandlerEl = function(){
-    var questionCounter = 1;
     var buttonCounter = 1;
+    var questionId = 1;
     var questionTitleEl = document.querySelector("#question-title");
-    var questionPromptEl = document.querySelector("#question-prompt")
-    
+    var questionPromptEl = document.querySelector("#question-prompt");
+
     for(var i = 0; i < questionsArray.length; i++){
         // question number
-        questionTitleEl.innerHTML = "Question " + questionCounter;
+        questionTitleEl.innerHTML = "Question " + questionId;
         questionPromptEl.innerHTML = questionsArray[i].question;
 
         for(var j = 0; j < questionsArray[i].choice.length; j++){
             var answerButtonEl = document.createElement("button");
             answerButtonEl.className = "choice";
             answerButtonEl.innerHTML = buttonCounter + ") " + questionsArray[i].choice[j];
+
             optionsEl.appendChild(answerButtonEl);
+
             buttonCounter++;
-        }
-    }
+        };
+
+        answerMatchEl.answer = questionsArray[i].correctAnswer;
+        questionId++;
+        questionsArray++;
+        return false;
+    };
 };
+
+var answerResult = function(){
+    var selectedAnswer = answerMatchEl.selectedAnswer;
+    var questionAnswer = answerMatchEl.answer;
+    selectedAnswer = selectedAnswer.slice(3);
+
+    if(selectedAnswer === questionAnswer){
+        console.log("CORRECT ANSWER!");
+        questionHandlerEl();
+    }
+}
 
 var ButtonHandlerEl = function(event){
     var targetEl = event.target;
@@ -67,7 +93,9 @@ var ButtonHandlerEl = function(event){
         questionHandlerEl();
         quizTimeHandlerEl(quizDataObj);
     } else if(targetEl.matches(".choice")){
-
+        var answerInput = targetEl.innerText;
+        answerMatchEl.selectedAnswer = answerInput;
+        answerResult();
     }
 };
 
