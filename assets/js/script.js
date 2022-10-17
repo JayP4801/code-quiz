@@ -1,10 +1,12 @@
 var optionsEl = document.querySelector("#options");
+var submitFormEl = document.querySelector("#submit-form");
 var mainSectionEl = document.querySelector("#main-section");
 var subheaderEl = document.querySelector("#subheader-container");
 var questionId = 0;
 var score = 0;
-var timeLimit = 90;
+var timeLimit = 4;
 var compareAnswerEl = [];
+var highScore = [];
 var questionsArray = [
     { question: "Which of these is not like the other?",
         choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
@@ -118,6 +120,8 @@ var answerResult = function(){
     if(selectedAnswer === questionAnswer){
         // if correct answer is selected, prompt correct
         resultPrompt.textContent = "Correct!";
+
+        score++;
         
         // remove previous answer buttons
         removeButtonEl();
@@ -152,6 +156,72 @@ var gameOver = function(){
     while(mainSectionEl.firstChild){
         mainSectionEl.removeChild(mainSectionEl.firstChild);
     };
+
+    // dynamically generate high score menu
+    var endMenu = document.createElement("section");
+    endMenu.className = "end-menu";
+    endMenu.id = "end-menu";
+    endMenu.innerHTML = "<h1 id='end-menu-title'>All done!</h1><h2 id='end-menu-description'>Your final score is " + score + "!</h2>";
+
+    mainSectionEl.appendChild(endMenu);
+
+    var submitForm = document.createElement("div");
+    submitForm.className = "submit-form";
+    submitForm.id = "submit-form";
+    submitForm.innerHTML = "<h2 id='submit-form-title'>Enter your name</h2><input type='text' name='username' id='submit-form-input'>";
+
+    endMenu.appendChild(submitForm);
+
+    var submitButton = document.createElement("button");
+    submitButton.className = "submit-btn";
+    submitButton.id = "submit-btn";
+    submitButton.textContent = "Submit";
+
+    submitForm.appendChild(submitButton);
+};
+
+var thankYouPage = function(){
+    document.getElementById("submit-form").remove();
+    document.getElementById("end-menu-title").textContent = "Thanks for playing!";
+    document.getElementById("end-menu-description").textContent = "Refresh the page to try again!";
+
+};
+
+var submitScore = function(){
+    var playerNameInput = document.querySelector("input[name='username']").value;
+    var playerScore = score;
+    
+    var savedScores = {
+        name: playerNameInput,
+        score: playerScore
+    }
+
+    highScore.push(savedScores);
+
+    localStorage.setItem("highscore", JSON.stringify(highScore));
+};
+
+var loadScore = function(){
+    var downloadScores = localStorage.getItem("highscore");
+
+    if (!downloadScores){
+        return false;
+    }
+
+    downloadScores = JSON.parse(downloadScores);
+    console.log(downloadScores);
+
+    for(var i = 0; i < downloadScores.length; i++){
+        var playerName = downloadScores[i].name;
+        var playerScore = downloadScores[i].score;
+
+        var savedScores = {
+            name: playerName,
+            score: playerScore
+        }
+
+        highScore.push(savedScores);
+    };
 };
 
 var ButtonHandlerEl = function(event){
@@ -182,7 +252,11 @@ var ButtonHandlerEl = function(event){
 
         answerResult();
         questionHandlerEl();
+    } else if(targetEl.matches(".submit-btn")){
+        submitScore();
+        thankYouPage();
     }
 };
 
-optionsEl.addEventListener("click", ButtonHandlerEl);
+mainSectionEl.addEventListener("click", ButtonHandlerEl);
+loadScore();

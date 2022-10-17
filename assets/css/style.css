@@ -74,11 +74,11 @@ header {
     transition-duration: 0.2s;
 }
 
-.options button:hover {
-    background-color: #8b3ab9;
+.options button:hover, .submit-form button:hover {
+    background-color: #8525bd;
 }
 
-.choice, .start-btn{
+.choice, .start-btn, .submit-btn, .retry-btn{
     background-color: #6957cc;
     border: none;
     border-radius: 5px;
@@ -110,6 +110,28 @@ header {
 @keyframes fadeOut {
     0% {opacity: 1}
     100% {opacity: 0}
+}
+
+.end-menu {
+    margin: 50px auto;
+}
+
+.end-menu h1 {
+    font-size: 36px;
+}
+
+.end-menu h2 {
+    font-weight: normal;
+    text-align: left;
+}
+
+.submit-form {
+    display: flex;
+    align-items: center;
+}
+
+section.end-menu * {
+    padding: 6px 0;
 }
 
 footer {
