@@ -1,6 +1,9 @@
 var optionsEl = document.querySelector("#options");
-var mainContainer = document.querySelector("#main-container");
+var mainSectionEl = document.querySelector("#main-section");
+var subheaderEl = document.querySelector("#subheader-container");
 var questionId = 0;
+var score = 0;
+var timeLimit = 90;
 var compareAnswerEl = [];
 var questionsArray = [
     { question: "Which of these is not like the other?",
@@ -52,25 +55,22 @@ var questionsArray = [
         choice: ["47", "48", "49", "50"],
         correctAnswer: "48",
         id: 10
-    },
+    }
 ];
 
-var quizTimeHandlerEl = function(quizDataObj){
-    document.getElementById("timer").innerHTML = "Good luck!";
-    var countdownTimer = setInterval(function(){
-        if(quizDataObj.time <= 0){
-            clearInterval(countdownTimer);
-            document.getElementById("timer").innerHTML = "TIME'S UP!";
+var countdownTimer = function(){
+    if(timeLimit >= 0){
+        document.getElementById("timer").innerHTML = timeLimit + " seconds remaining";
+        timeLimit -= 1;
+    } else{
+        clearInterval(countdownTimer);
+        document.getElementById("timer").innerHTML = "TIME'S UP!";
+        timeLimit = 0;
 
-            endGame();
-            return false;
-        } else{
-            document.getElementById("timer").innerHTML = quizDataObj.time + " seconds remaining";
-        }
-        quizDataObj.time -= 1;
-    }, 1000);
-
-    
+        gameOver();
+        return false;
+    }
+    setTimeout(countdownTimer, 1000);
 };
 
 var questionHandlerEl = function(){
@@ -78,8 +78,8 @@ var questionHandlerEl = function(){
     var questionPromptEl = document.querySelector("#question-prompt");
 
     if(questionId === questionsArray.length){
-        console.log("END GAME!")
-        endGame();
+        console.log("Game Over!")
+        gameOver();
         return false;
     };
 
@@ -90,7 +90,6 @@ var questionHandlerEl = function(){
     compareAnswerEl.correctAnswer = questionsArray[questionId].correctAnswer;
     
     answerButtonHandlerEl(questionId);
-    console.log(questionId);
     questionId++;
 };
 
@@ -111,16 +110,33 @@ var answerButtonHandlerEl = function(questionId){
 var answerResult = function(){
     var selectedAnswer = compareAnswerEl.chosenAnswer;
     var questionAnswer = compareAnswerEl.correctAnswer;
-    selectedAnswer = selectedAnswer.slice(3);
+    var resultPrompt = document.querySelector("#result-prompt");
+
+    // removes any text prior to the first instance of space " " only from selectedAnswer text. e.g. "1) Text" => "Text" or "100) (Text)" => "(Text)"
+    selectedAnswer = selectedAnswer.slice(selectedAnswer.indexOf(" ") + 1);
 
     if(selectedAnswer === questionAnswer){
-        console.log("CORRECT ANSWER!");
-
-        // remove all buttons
+        // if correct answer is selected, prompt correct
+        resultPrompt.textContent = "Correct!";
+        
+        // remove previous answer buttons
         removeButtonEl();
     } else{
-        console.log("WRONG!");
-        console.log(quizDataObj.time);
+        // if wrong answer is selected, prompt incorrect
+        resultPrompt.textContent = "Incorrect!";
+
+        // dynamically generate penalty prompt to use fadeOut animation in css
+        var penaltyPrompt = document.createElement("h2");
+        penaltyPrompt.className = "penalty-prompt";
+        penaltyPrompt.id = "penalty-prompt";
+        penaltyPrompt.textContent = "-10 seconds";
+
+        subheaderEl.appendChild(penaltyPrompt);
+
+        // penalize time
+        timeLimit-=10;
+
+        // remove previous answer buttons
         removeButtonEl();
     };
 };
@@ -131,14 +147,15 @@ var removeButtonEl = function(){
     };
 };
 
-var endGame = function(){
-
-}
+var gameOver = function(){
+    // remove quiz content
+    while(mainSectionEl.firstChild){
+        mainSectionEl.removeChild(mainSectionEl.firstChild);
+    };
+};
 
 var ButtonHandlerEl = function(event){
     var targetEl = event.target;
-    var score = 0;
-    var timeLimit = 90;
 
     if(targetEl.matches(".start-btn")){
         // change question classname
@@ -152,17 +169,17 @@ var ButtonHandlerEl = function(event){
         var startButtonEl = document.querySelector("#start-btn");
         startButtonEl.remove();
 
-        var quizDataObj = {
-            score: score,
-            time: timeLimit
-        };
-
         questionHandlerEl();
-        quizTimeHandlerEl(quizDataObj);
-        console.log(mainContainer);
+        countdownTimer();
     } else if(targetEl.matches(".choice")){
         var answerInput = targetEl.innerText;
         compareAnswerEl.chosenAnswer = answerInput;
+
+        if(document.querySelector("#penalty-prompt")){
+            var penaltyPrompt = document.querySelector("#penalty-prompt");
+            subheaderEl.removeChild(penaltyPrompt);
+        }
+
         answerResult();
         questionHandlerEl();
     }
