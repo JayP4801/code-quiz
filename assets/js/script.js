@@ -8,57 +8,56 @@ var timeLimit = 90;
 var compareAnswerEl = [];
 var highScore = [];
 var questionsArray = [
-    { question: "",
+    { question: "What is my favorite color?",
         choice: ["Red", "Blue", "Green", "Purple"],
         correctAnswer: "Purple",
         id: 1
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "How many siblings do I have?",
+        choice: ["One", "Two", "Three", "Four"],
+        correctAnswer: "One",
         id: 2
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "How many months have we been dating?",
+        choice: ["5", "6", "7", "8"],
+        correctAnswer: "7",
         id: 3
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "What is my favorite animal?",
+        choice: ["Sharks", "Octopus", "Hawks", "Elephants"],
+        correctAnswer: "Sharks",
         id: 4
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "Who is my favorite Valorant agent?",
+        choice: ["Chamber", "Yoru", "Raze", "Jett"],
+        correctAnswer: "Jett",
         id: 5
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "When is my birthday?",
+        choice: ["April 29, 1992", "April 28, 1991", "April 28, 1992", "April 29, 1991"],
+        correctAnswer: "April 29, 1991",
         id: 6
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "What is my street address in Orlando?",
+        choice: ["Adriatic", "Acropolis", "Oceanic", "Olympia"],
+        correctAnswer: "Adriatic",
         id: 7
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "How much do you love me?",
+        choice: ["Alot", "Like alot alot", "Only alittle", "AlotAlotAlotAlotAlotAlotAlotAlotAlotAlotAlotAlotAlot"],
+        correctAnswer: "AlotAlotAlotAlotAlotAlotAlotAlotAlotAlotAlotAlotAlot",
         id: 8
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "What is my least favorite thing to do?",
+        choice: ["Doing laundry", "Doing dishes", "Scrubbing the toilet", "You"],
+        correctAnswer: "Doing dishes",
         id: 9
     },
-    { question: "",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "Which one of these do I not like?",
+        choice: ["You", "Your fat juicy 🍑", "Spending quality time with you", "Oregano leaves"],
+        correctAnswer: "Oregano leaves",
         id: 10
     },
-
 ];
 
 var countdownTimer = function(){
