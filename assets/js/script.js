@@ -8,56 +8,57 @@ var timeLimit = 90;
 var compareAnswerEl = [];
 var highScore = [];
 var questionsArray = [
-    { question: "Which of these is not like the other?",
-        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
-        correctAnswer: "Apples",
+    { question: "",
+        choice: ["Red", "Blue", "Green", "Purple"],
+        correctAnswer: "Purple",
         id: 1
     },
-    { question: "Which of the following is not round?",
-        choice: ["Football", "Basket ball", "Baseball", "Tennis Ball"],
-        correctAnswer: "Football",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 2
     },
-    { question: "How many stars are on the American flag?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "50",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 3
     },
-    { question: "The answer is the first one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "47",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 4
     },
-    { question: "The answer is the second one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "48",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 5
     },
-    { question: "The answer is the last one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "50",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 6
     },
-    { question: "The answer is the last one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "50",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 7
     },
-    { question: "The answer is the first one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "47",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 8
     },
-    { question: "The answer is the second one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "48",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 9
     },
-    { question: "The answer is the second one?",
-        choice: ["47", "48", "49", "50"],
-        correctAnswer: "48",
+    { question: "",
+        choice: ["Peanuts", "Cashews", "Apples", "Pastachios"],
+        correctAnswer: "Apples",
         id: 10
-    }
+    },
+
 ];
 
 var countdownTimer = function(){
@@ -90,7 +91,7 @@ var generateHighScore = function(scoreObj){
 
     var scoreEl = document.createElement("li");
     scoreEl.className = "player-score";
-    scoreEl.textContent = "Name: " + scoreObj.name + "  Score: " + scoreObj.score
+    scoreEl.innerHTML = "Name: " + scoreObj.name + "&nbsp;&nbsp;&nbsp;&nbsp; Score: " + scoreObj.score
 
     scoreList.appendChild(scoreEl);
 }
