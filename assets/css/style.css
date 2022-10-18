@@ -25,8 +25,8 @@ header {
     margin: 20px 20%;
 }
 
-.score {
-    color: #d19336;
+.view-score {
+    color: #df8837;
 }
 
 .timer {
@@ -34,7 +34,7 @@ header {
 
 }
 
-.main-section {
+.main-section{
     display: flex;
     flex-direction: column;
     flex-basis: auto;
@@ -112,6 +112,20 @@ header {
     100% {opacity: 0}
 }
 
+.score-container {
+    display: none;
+    margin: 5px 0;
+}
+
+.score-list {
+    list-style: none;
+    color: #14a014;
+}
+
+.player-score {
+    padding: 2px 23%;
+}
+
 .end-menu {
     margin: 50px auto;
 }
@@ -150,6 +164,10 @@ footer {
     .header-section, .subheader-container{
         margin: 20px 10%;
     }
+
+    .player-score {
+        padding: 2px 15%;
+    }
 }
 
 @media screen and (max-width: 768px){
@@ -160,6 +178,12 @@ footer {
     .header-section, .subheader-container{
         margin: 20px 5%;
     }
+    
+    .player-score {
+        padding: 2px 11%;
+    }
+
+    
 }
 
 @media screen and (max-width: 575px){
@@ -170,5 +194,11 @@ footer {
     .header-section, .subheader-container{
         margin: 20px 1%;
     }
+    
+    .player-score {
+        padding: 2px 9%;
+    }
+
+    
 }
 

@@ -4,7 +4,7 @@ var mainSectionEl = document.querySelector("#main-section");
 var subheaderEl = document.querySelector("#subheader-container");
 var questionId = 0;
 var score = 0;
-var timeLimit = 4;
+var timeLimit = 90;
 var compareAnswerEl = [];
 var highScore = [];
 var questionsArray = [
@@ -75,13 +75,33 @@ var countdownTimer = function(){
     setTimeout(countdownTimer, 1000);
 };
 
+var displayHighScore = function(){
+    var scoreContainer = document.getElementById("score-container");
+
+    if(scoreContainer.style.display === "block"){
+        scoreContainer.style.display = "none";
+    } else {
+        scoreContainer.style.display = "block";
+    }
+};
+
+var generateHighScore = function(scoreObj){
+    var scoreList = document.querySelector("#score-list");
+
+    var scoreEl = document.createElement("li");
+    scoreEl.className = "player-score";
+    scoreEl.textContent = "Name: " + scoreObj.name + "  Score: " + scoreObj.score
+
+    scoreList.appendChild(scoreEl);
+}
+
 var questionHandlerEl = function(){
     var currentQuestionEl = document.querySelector("#question-title");
     var questionPromptEl = document.querySelector("#question-prompt");
 
     if(questionId === questionsArray.length){
-        console.log("Game Over!")
         gameOver();
+        timeLimit = 0;
         return false;
     };
 
@@ -197,6 +217,7 @@ var submitScore = function(){
     }
 
     highScore.push(savedScores);
+    generateHighScore(savedScores);
 
     localStorage.setItem("highscore", JSON.stringify(highScore));
 };
@@ -209,7 +230,6 @@ var loadScore = function(){
     }
 
     downloadScores = JSON.parse(downloadScores);
-    console.log(downloadScores);
 
     for(var i = 0; i < downloadScores.length; i++){
         var playerName = downloadScores[i].name;
@@ -221,6 +241,7 @@ var loadScore = function(){
         }
 
         highScore.push(savedScores);
+        generateHighScore(savedScores);
     };
 };
 
