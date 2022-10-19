@@ -182,8 +182,6 @@ footer {
     .player-score {
         padding: 2px 11%;
     }
-
-    
 }
 
 @media screen and (max-width: 575px){
@@ -198,7 +196,5 @@ footer {
     .player-score {
         padding: 2px 9%;
     }
-
-    
 }
 

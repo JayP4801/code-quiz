@@ -91,6 +91,7 @@ var generateHighScore = function(scoreObj){
 
     var scoreEl = document.createElement("li");
     scoreEl.className = "player-score";
+
     scoreEl.innerHTML = "Name: " + scoreObj.name + "&nbsp;&nbsp;&nbsp;&nbsp; Score: " + scoreObj.score
 
     scoreList.appendChild(scoreEl);
@@ -224,14 +225,19 @@ var submitScore = function(){
 };
 
 var loadScore = function(){
+    // get scores from local storage
     var downloadScores = localStorage.getItem("highscore");
 
+    // if there are no scores saved, return false
     if (!downloadScores){
+        
         return false;
     }
 
+    // parse the scores
     downloadScores = JSON.parse(downloadScores);
 
+    // for each object, push the scores with correlating names into highScore=[] and add to 'Show scores' menu
     for(var i = 0; i < downloadScores.length; i++){
         var playerName = downloadScores[i].name;
         var playerScore = downloadScores[i].score;
@@ -281,4 +287,6 @@ var ButtonHandlerEl = function(event){
 };
 
 mainSectionEl.addEventListener("click", ButtonHandlerEl);
+
+// load in scored on page load
 loadScore();
